@@ -1,14 +1,14 @@
 ''''
 Remember to start the server
-export FLASK_APP=server.p
-flask run
+    export FLASK_APP=server.py
+    flask run
 '''
 
 from flask import Flask, request, jsonify #import main Flask class and request object
 from flask_cors import CORS
 from pylsl import StreamInfo, StreamOutlet 
 
-info = StreamInfo('markerStreamName','Markers',1,0,'string','marker-data') # define the LSL stream
+info = StreamInfo('markerStreamName','Markers',1,0,'string','marker-data') # declare the LSL stream
 outlet = StreamOutlet(info) # create the LSL outlet
 
 app = Flask(__name__)
