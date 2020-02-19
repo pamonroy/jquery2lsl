@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+    <button id="actionButton" name="actionButton" type="button" class="btn btn-primary">Click to send a marker</button>
+
+    <script type="text/javascript"> 
+    
+        $('#actionButton').bind('click', function() {
+            var newData =   {  
+                "markerName": "markerValue"  // declare the marker
+                };
+        
+            var dataJson = JSON.stringify(newData);
+        
+            $.ajax({  // send the marker to the Flask server
+                type: 'POST',
+                url: "http://127.0.0.1:5000/send-to-lsl",
+                data: dataJson,
+                dataType: "json",
+                contentType: "application/json"
+            })
+            .done(function( msg ) {  // OPTIONAL: get the message from the server
+                console.log( "Message from the server: " + msg );
+            });
+           
+        });
+    
+    </script>
+</body>
+</html>
